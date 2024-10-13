@@ -1,0 +1,71 @@
+html, body {
+    height: 100%; /* Ensure both elements take up the full viewport height */
+    margin: 0;    /* Remove default margin */
+}
+
+body {
+    display: flex;
+    flex-direction:column;
+    justify-content: space-around;
+    align-items: center;
+    background-image: url(img/background-wallpaper.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.tittle {
+    text-align: center;        /* Centers text in header */
+    font-size: 3rem;
+    color: #2c343e;
+    font-family: 'Roboto', sans-serif;
+}
+
+header .tittle:nth-child(2) {
+    font-size: 1rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+input[type="text"] {
+    width: 50vw;             
+    padding: 1rem;             
+    font-size: 1rem;           
+    border-radius: 10px;        
+    border: none;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.75);
+    transition: box-shadow 0.5s, background-color 0.5s;
+}
+
+input[type="text"]:focus {
+    box-shadow: 0 0 5px rgba(15, 101, 58, 0.9);
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+button {
+    background-color: rgba(30, 59, 51, 0.75);
+    color: whitesmoke;
+    width: 20%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin: 1rem;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: box-shadow 0.25s;}
+
+button:hover {
+    box-shadow: 0 0 5px rgba(30, 59, 51, 0.9);
+}
+
+footer {
+    text-align: center;        /* Centers text in footer */
+    letter-spacing: 0.1rem;    /* Adds slight letter spacing */
+    font-size: 0.75rem;        /* Small font size */
+    font-family: 'Roboto', sans-serif;
+}
