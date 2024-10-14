@@ -11,6 +11,7 @@ body {
     background-image: url(img/background-wallpaper.jpg);
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
 }
 
 .tittle {
@@ -42,7 +43,7 @@ input[type="text"] {
     transition: box-shadow 0.5s, background-color 0.5s;
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus, input[type="text"]:hover {
     box-shadow: 0 0 5px rgba(15, 101, 58, 0.9);
     background-color: rgba(255, 255, 255, 0.9);
 }
