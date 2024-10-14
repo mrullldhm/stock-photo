@@ -21,6 +21,7 @@ form.addEventListener('submit', (event) => {
     currentQuery = document.getElementById('query').value;
     currentPage = 1;
     resultSection.innerHTML = ''; // Clear previous results
+    loadMore.style.display = 'none'; // Hide the Load More button when searching
     fetchPhotos(currentQuery, currentPage);
 });
 
@@ -35,41 +36,40 @@ function fetchPhotos(query, page) {
             Authorization: API_KEY
         }
     })
-        .then(response => response.json())
-        .then(body => {
-            body.photos.forEach(photo => {
-                // Create an image element for each photo
-                const img = document.createElement('img');
-                img.src = photo.src.medium; // Use the medium size of the image
-                img.alt = photo.alt; // Use the alt text for accessibility
-                img.style.cursor = 'pointer'; // Change cursor to pointer on hover
+    .then(response => response.json())
+    .then(body => {
+        body.photos.forEach(photo => {
+            // Create an image element for each photo
+            const img = document.createElement('img');
+            img.src = photo.src.medium; // Use the medium size of the image
+            img.alt = photo.alt; // Use the alt text for accessibility
+            img.style.cursor = 'pointer'; // Change cursor to pointer on hover
 
-                // Add click event to show the original image size
-                img.addEventListener('click', () => {
-                    showOriginalImage(photo.src.original); // Call the function to show the original image
-                });
-
-                // Append the image to the result section
-                resultSection.appendChild(img);
+            // Add click event to show the original image size
+            img.addEventListener('click', () => {
+                showOriginalImage(photo.src.original); // Call the function to show the original image
             });
 
-            // Apply styles to the result section for consistent spacing
-            resultSection.style.display = 'flex';
-            resultSection.style.flexWrap = 'wrap'; // Wrap images to the next line
-            resultSection.style.justifyContent = 'center'; // Center images horizontally
-            resultSection.style.gap = '0.5rem'; // Set consistent gap between images
-
-            // Show the "Load More" button if there are more photos
-            if (body.photos.length > 0 && body.photos.length === 20) {
-                loadMore.style.display = 'block'; // Show button if more photos available
-            } else {
-                loadMore.style.display = 'none'; // Hide button if no more photos
-            }
-        })
-        .catch(err => {
-            console.error('There was a problem with the fetch operation:', err);
-            debugger;
+            // Append the image to the result section
+            resultSection.appendChild(img);
         });
+
+        // Apply styles to the result section for consistent spacing
+        resultSection.style.display = 'flex';
+        resultSection.style.flexWrap = 'wrap'; // Wrap images to the next line
+        resultSection.style.justifyContent = 'center'; // Center images horizontally
+        resultSection.style.gap = '0.5rem'; // Set consistent gap between images
+
+        // Show the "Load More" button if there are more photos
+        if (body.photos.length > 0 && body.photos.length === 20) {
+            loadMore.style.display = 'block'; // Show button if more photos available
+        } else {
+            loadMore.style.display = 'none'; // Hide button if no more photos
+        }
+    })
+    .catch(err => {
+        console.error('There was a problem with the fetch operation:', err);
+    });
 }
 
 function showOriginalImage(src) {
